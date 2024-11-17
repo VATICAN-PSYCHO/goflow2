@@ -419,6 +419,27 @@ func ConvertNetFlowDataSet(flowMessage *ProtoProducerMessage, version uint16, ba
 		case netflow.NFV9_FIELD_BGP_IPV6_NEXT_HOP:
 			flowMessage.BgpNextHop = v
 
+		case netflow.IPFIX_FIELD_postNATSourceIPv4Address:
+			if err := DecodeUNumber(v, &(flowMessage.PostNatSrcAddr)); err != nil {
+				return err
+			}
+		
+		case netflow.IPFIX_FIELD_postNATDestinationIPv4Address:
+			if err := DecodeUNumber(v, &(flowMessage.PostNatDstAddr)); err != nil {
+				return err
+			}
+
+		case netflow.IPFIX_FIELD_postNAPTSourceTransportPort:
+			if err := DecodeUNumber(v, &(flowMessage.PostNatSrcPort)); err != nil {
+				return err
+			}
+
+		case netflow.IPFIX_FIELD_postNAPTDestinationTransportPort:
+			if err := DecodeUNumber(v, &(flowMessage.PostNatDstPort)); err != nil {
+				return err
+			}
+
+
 		// ICMP
 		case netflow.NFV9_FIELD_ICMP_TYPE:
 			var icmpTypeCode uint16
