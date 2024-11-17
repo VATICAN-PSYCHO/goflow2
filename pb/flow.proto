@@ -120,4 +120,9 @@ message FlowMessage {
   repeated bytes ipv6_routing_header_addresses = 105; // SRv6
   uint32 ipv6_routing_header_seg_left = 106; // SRv6
 
+  uint32 post_nat_src_addr = 225;
+  uint32 post_nat_dst_addr = 226;
+  uint32 post_nat_src_port = 227;
+  uint32 post_nat_dst_port = 228;
+
 }
